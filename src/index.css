@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: 'MyFont';
+    src: url('./assets/fonts/Inter-Regular.ttf');
+}
+body{
+    background-color: rgb(15, 15, 15);
+    font-family: 'MyFont',sans-serif;
+}
+
+@layer base {
+  li {
+    @apply p-4;
+  }
+}
