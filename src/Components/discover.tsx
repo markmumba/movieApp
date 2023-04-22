@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
 type movieType = {
-    id:number,
-    title:string,
-    poster_path:string,
+    id: number,
+    title: string,
+    poster_path: string,
     vote_average: number
 }[]
 
@@ -11,7 +11,7 @@ const Discover = (props: any) => {
 
     const [movies, setMovies] = useState<movieType>([])
 
-   
+
     const BASE_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${props.APIKEY}`;
 
 
@@ -45,6 +45,11 @@ const Discover = (props: any) => {
                 })}
 
             </div>
+
+
+
+       
+
         </>
     )
 }
