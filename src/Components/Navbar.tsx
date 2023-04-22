@@ -1,11 +1,30 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Navbar = (props: any) => {
 
     const [nav, setNav] = useState(false);
     const [inputValue, setInputValue] = useState("");
-    const [showGenre,setShowGenre] =useState(false)
+    const [showGenre, setShowGenre] = useState(false);
+    const [genre, setGenre] = useState<any[]>([])
+
+    const BASEURL = `https://api.themoviedb.org/3/genre/movie/list?api_key=${props.APIKEY}`
+
+    const getGenre = async () => {
+
+        try {
+            const response = await fetch(BASEURL)
+            if (!response.ok) {
+                throw new Error("No genre are available")
+            }
+            const data = await response.json()
+
+            setGenre(data.genres)
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
 
     const handleGenre = () => {
         setShowGenre(!showGenre)
@@ -26,19 +45,24 @@ const Navbar = (props: any) => {
         }
     }
 
-
     const handleClick = () => {
         setNav((prevState) => !prevState)
     }
+
+    useEffect(() => {
+        getGenre();
+    }, [])
 
     return (
         <>
             <div className="w-full h-[80px] z-10 bg-zinc-800 text-white  fixed drop-shadow-lg">
                 <div className="px-2 flex justify-between items-center w-full h-full">
                     <div className="flex items-center">
-                        <h1 className="text-3xl font-bold mr-4  md:text-5xl" onClick={props.clearSearchWord}>MMM<span className="text-sm border px-3 rounded-md bg-cyan-600">movies</span></h1>
+                        <h1 className="text-3xl font-bold mr-4  md:text-5xl"
+                            onClick={() => {props.clearGenreId();props.clearSearchWord();}}>MMM
+                            <span className="text-sm border px-3 rounded-md bg-cyan-600">movies</span></h1>
                         <ul className="hidden md:flex">
-                            <li><button onClick={props.clearSearchWord}>Home</button></li>
+                            <li><button onClick={() => {props.clearGenreId;props.clearSearchWord;}}>Home</button></li>
                             <li><button onClick={handleGenre}>Genre</button></li>
                             <li>Movies</li>
                             <li>Tv show</li>
@@ -77,16 +101,19 @@ const Navbar = (props: any) => {
                 }
             </div>
 
-            <div className={`text-white ${showGenre == false ? 'hidden': ''} absolute border w-96 bg-zinc-800 z-10 p-5 mt-20 ml-64`}>
-                <h1>Countries</h1>
-                <ul>
-                    <li>Kenya</li>
-                    <li>Kenya</li>
-                    <li>Kenya</li>
-                    <li>Kenya</li>
-                    <li>Kenya</li>
-                    <li>Kenya</li>
-                </ul>
+            <div className={`text-white ${showGenre == false ? 'hidden' : ''} absolute border  bg-zinc-800 z-10 p-5 mt-20 ml-64`}>
+                <h1 className="text-center text-2xl">Genres</h1>
+                <div className="grid grid-cols-4 ">
+                    {genre.map((gen: { id: number, name: string }) => {
+                        return (
+                            <button key={gen.id}
+                                className="p-3 transition ease-in-out hover:scale-110"
+                                onClick={() => props.getGenreId(gen.id)}>
+                                {gen.name}
+                            </button>
+                        )
+                    })}
+                </div>
             </div>
         </>
     )
