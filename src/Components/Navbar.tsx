@@ -12,6 +12,7 @@ const Navbar = (props: any) => {
 
     const handleSubmit = () => {
         props.handleSearchWord(inputValue)
+        setInputValue("")
     }
     
     const handleKeyPress = (e: any) => {
@@ -29,9 +30,9 @@ const Navbar = (props: any) => {
         <div className="w-full h-[80px] z-10 bg-zinc-800 text-white  fixed drop-shadow-lg">
             <div className="px-2 flex justify-between items-center w-full h-full">
                 <div className="flex items-center">
-                    <h1 className="text-3xl font-bold mr-4  sm:text-5xl">NetMovies</h1>
+                    <h1 className="text-3xl font-bold mr-4  md:text-5xl" onClick={props.clearSearchWord}>MMM<span className="text-sm border px-3 rounded-md bg-cyan-600">movies</span></h1>
                     <ul className="hidden md:flex">
-                        <li>Home</li>
+                        <li onClick={props.clearSearchWord} >Home</li>
                         <li>Genre</li>
                         <li>Movies</li>
                         <li>Tv show</li>

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 
-
 const Search = (props: any) => {
 
     const [searchedMovies, setSearchedMovies] = useState<any[]>([])
@@ -13,7 +12,7 @@ const Search = (props: any) => {
         try {
             const response = await fetch(BASE_URL);
             const data = await response.json()
-            setSearchedMovies(data.results.filter(movie => movie.poster_path))
+            setSearchedMovies(data.results.filter((movie: { poster_path: string }) => movie.poster_path))
         } catch (error) {
             console.log(error);
         }
@@ -22,9 +21,8 @@ const Search = (props: any) => {
 
     useEffect(() => {
         getSearchResult()
-    }, [])
+    }, [props.searchWord])
 
-    console.log (searchedMovies)
 
     return (
         <>
