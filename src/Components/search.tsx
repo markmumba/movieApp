@@ -32,7 +32,7 @@ const Search = (props: any) => {
 
                         <div key={searchedMovie.id} className="text-white text-center shadow-lg w-35 p-1 m-1 transition-transform ease-in-out delay-150  hover:translate-y-1 hover:scale-110">
                             <div className="p-3">
-                                <img className="w-40 h-60 rounded-lg" src={`https://image.tmdb.org/t/p/w500${searchedMovie.poster_path}`} />
+                                <img onClick={()=>props.getMovieId(searchedMovie.id)} className="w-40 h-60 rounded-lg" src={`https://image.tmdb.org/t/p/w500${searchedMovie.poster_path}`} />
                                 <p className=" text-sm w-40 "> {searchedMovie.title}</p>
                                 <p>{searchedMovie.vote_average}</p>
                             </div>

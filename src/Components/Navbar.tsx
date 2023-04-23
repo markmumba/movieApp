@@ -1,5 +1,6 @@
-
+import { BiSearch } from "react-icons/bi";
 import { useState, useEffect } from "react";
+
 
 const Navbar = (props: any) => {
 
@@ -25,6 +26,7 @@ const Navbar = (props: any) => {
             console.log(error)
         }
     }
+
 
     const handleGenre = () => {
         setShowGenre(!showGenre)
@@ -55,28 +57,30 @@ const Navbar = (props: any) => {
 
     return (
         <>
-            <div className="w-full h-[80px] z-10 bg-zinc-800 text-white  fixed drop-shadow-lg">
+            <div  className="w-full h-[70px] z-10 bg-zinc-800 text-white  fixed drop-shadow-lg">
                 <div className="px-2 flex justify-between items-center w-full h-full">
                     <div className="flex items-center">
                         <h1 className="text-3xl font-bold mr-4  md:text-5xl"
-                            onClick={() => {props.clearGenreId();props.clearSearchWord();}}>MMM
+                            onClick={() => { props.clearGenreData(); props.clearSearchWord(); props.clearMovieId();}}>MMM
                             <span className="text-sm border px-3 rounded-md bg-cyan-600">movies</span></h1>
-                        <ul className="hidden md:flex">
-                            <li><button onClick={() => {props.clearGenreId;props.clearSearchWord;}}>Home</button></li>
-                            <li><button onClick={handleGenre}>Genre</button></li>
+                        <ul   className="hidden md:flex">
+                            <li><button onClick={() => { props.clearGenreId; props.clearSearchWord; }}>Home</button></li>
+                            <li onClick={handleGenre} ><button>Genre</button></li>
                             <li>Movies</li>
                             <li>Tv show</li>
 
                         </ul>
                     </div>
-                    <div className=" hidden md:pr-20  md:block">
+                    <div className=" hidden md:pr-20 md:flex">
+                        <label htmlFor="search"><BiSearch style={{fontSize:"3rem"}} /></label>
                         <input type="text" id="search"
                             value={inputValue}
                             onChange={handleInput}
                             onKeyDown={handleKeyPress}
-                            className="p-3 rounded-lg bg-zinc-700"
-                            placeholder="search movie" />
-
+                            className=" rounded-xl text-sm  bg-transparent"
+                            placeholder='search'
+                            
+                        />
                     </div>
                     <div className="md:hidden" onClick={handleClick}>
                         {!nav ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -101,14 +105,14 @@ const Navbar = (props: any) => {
                 }
             </div>
 
-            <div className={`text-white ${showGenre == false ? 'hidden' : ''} absolute border  bg-zinc-800 z-10 p-5 mt-20 ml-64`}>
+            <div className={`text-white ${showGenre == false ? 'hidden' : ''} absolute border transition ease-in-out duration-300 bg-zinc-800 z-10 p-5 mt-20 ml-64`}>
                 <h1 className="text-center text-2xl">Genres</h1>
                 <div className="grid grid-cols-4 ">
                     {genre.map((gen: { id: number, name: string }) => {
                         return (
                             <button key={gen.id}
                                 className="p-3 transition ease-in-out hover:scale-110"
-                                onClick={() => props.getGenreId(gen.id)}>
+                                onClick={() => props.getGenreData(gen)}>
                                 {gen.name}
                             </button>
                         )

@@ -29,13 +29,13 @@ const Discover = (props: any) => {
     }, []);
     return (
         <>
-            <h1 className="text-white font-medium text-3xl">Recomended</h1>
+            <h1 className="text-white font-medium text-3xl m-4">Recomended</h1>
             <div className="flex flex-wrap">
                 {movies.map(movie => {
                     return (
                         <div key={movie.id} className="text-white text-center shadow-lg w-35 p-1 m-1 transition-transform ease-in-out delay-150  hover:translate-y-1 hover:scale-110">
                             <div className="p-3">
-                                <img className="w-40 h-60 rounded-lg" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+                                <img onClick={() => props.getMovieId(movie.id)} className="w-40 h-60 rounded-lg" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                                 <p className=" text-sm w-40 "> {movie.title}</p>
                                 <p>{movie.vote_average}</p>
                             </div>
