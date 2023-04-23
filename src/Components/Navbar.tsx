@@ -75,7 +75,7 @@ const Navbar = (props: any) => {
                         </ul>
                     </div>
                     <div className=" hidden md:pr-20 md:flex">
-                        <label htmlFor="search"><BiSearch style={{ fontSize: "3rem" }} /></label>
+                        <label htmlFor="search"><BiSearch style={{ fontSize: "2rem" }} /></label>
                         <input type="text" id="search"
                             value={inputValue}
                             onChange={handleInput}
