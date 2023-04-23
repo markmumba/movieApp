@@ -14,6 +14,6 @@ body{
 
 @layer base {
   li {
-    @apply p-4;
+    @apply p-4 hover:text-cyan-600;
   }
 }

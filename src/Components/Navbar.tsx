@@ -29,9 +29,12 @@ const Navbar = (props: any) => {
 
 
     const handleGenre = () => {
-        setShowGenre(!showGenre)
+        setShowGenre(true)
     }
 
+    const reverseHandleGenre = () => {
+        setShowGenre(false)
+    }
     const handleInput = (e: any) => {
         setInputValue(e.target.value)
     }
@@ -57,29 +60,29 @@ const Navbar = (props: any) => {
 
     return (
         <>
-            <div  className="w-full h-[70px] z-10 bg-zinc-800 text-white  fixed drop-shadow-lg">
+            <div className="w-full h-[70px] z-10 bg-zinc-800 text-white  fixed drop-shadow-lg">
                 <div className="px-2 flex justify-between items-center w-full h-full">
                     <div className="flex items-center">
                         <h1 className="text-3xl font-bold mr-4  md:text-5xl"
-                            onClick={() => { props.clearGenreData(); props.clearSearchWord(); props.clearMovieId();}}>MMM
+                            onClick={() => { props.clearGenreData(); props.clearSearchWord(); props.clearMovieId(); }}>MMM
                             <span className="text-sm border px-3 rounded-md bg-cyan-600">movies</span></h1>
-                        <ul   className="hidden md:flex">
+                        <ul className="hidden md:flex">
                             <li><button onClick={() => { props.clearGenreId; props.clearSearchWord; }}>Home</button></li>
-                            <li onClick={handleGenre} ><button>Genre</button></li>
+                            <li onMouseEnter={handleGenre} ><button>Genre</button></li>
                             <li>Movies</li>
                             <li>Tv show</li>
 
                         </ul>
                     </div>
                     <div className=" hidden md:pr-20 md:flex">
-                        <label htmlFor="search"><BiSearch style={{fontSize:"3rem"}} /></label>
+                        <label htmlFor="search"><BiSearch style={{ fontSize: "3rem" }} /></label>
                         <input type="text" id="search"
                             value={inputValue}
                             onChange={handleInput}
                             onKeyDown={handleKeyPress}
                             className=" rounded-xl text-sm  bg-transparent"
                             placeholder='search'
-                            
+
                         />
                     </div>
                     <div className="md:hidden" onClick={handleClick}>
@@ -105,13 +108,13 @@ const Navbar = (props: any) => {
                 }
             </div>
 
-            <div className={`text-white ${showGenre == false ? 'hidden' : ''} absolute border transition ease-in-out duration-300 bg-zinc-800 z-10 p-5 mt-20 ml-64`}>
+            <div className={`text-white ${showGenre == false ? 'hidden' : ''} absolute rounded-xl transition ease-in-out duration-300 bg-zinc-800 z-10 p-5 mt-16 ml-80`}>
                 <h1 className="text-center text-2xl">Genres</h1>
                 <div className="grid grid-cols-4 ">
                     {genre.map((gen: { id: number, name: string }) => {
                         return (
                             <button key={gen.id}
-                                className="p-3 transition ease-in-out hover:scale-110"
+                                className="p-3  hover:text-cyan-500 hover: hover:rounded-lg hover:px-4 hover:bg-zinc-900 "
                                 onClick={() => props.getGenreData(gen)}>
                                 {gen.name}
                             </button>
@@ -119,6 +122,8 @@ const Navbar = (props: any) => {
                     })}
                 </div>
             </div>
+            <div onMouseEnter={reverseHandleGenre} className="absolute p-60 h-96  mt-20 ml-56"></div>
+            {showGenre && <div onMouseEnter={reverseHandleGenre} className="absolute p-8 w-60 z-10  ml-96"></div>}
         </>
     )
 }

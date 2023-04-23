@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import debounce from "lodash.debounce";
+
 
 type movieDataT = {
     title: string,
@@ -30,22 +30,23 @@ const SingleMovie = (props: any) => {
         }
     }
 
-    const debouncedGetMovieDetails = debounce(getMovieDetails, 600);
+ 
 
     useEffect(() => {
-        debouncedGetMovieDetails();
+        getMovieDetails();
     }, [props.movieId])
 
 
 
-
     console.log(movieData)
+    
+   
     return (
         <>
             <div className="flex text-white">
 
                 <div className="p-7">
-                    <h2>{movieData.title}</h2>
+                    
                 </div>
             </div>
 
