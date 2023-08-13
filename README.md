@@ -13,3 +13,12 @@ This is a web app that shows all the latest movies  from the tmdb API.
 ![screenshot 2](https://github.com/markmumba/movieApp/blob/main/images/movie%202.png)
 
 ![screenshot 4](https://github.com/markmumba/movieApp/blob/main/images/movie%204.png)
+
+### How to run
+If you want to use it on your laptop :
+-    First, download the zip folder of the code or you can `git clone from the terminal 
+-    navigate to the files directory:
+-     `npm install`
+To install all the dependencies  required 
+-     `npm run dev`
+To start the app on your laptop 
