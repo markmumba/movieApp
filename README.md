@@ -7,13 +7,14 @@ This is a web app that shows all the latest movies  from the tmdb API.
 -  Can view movies grouped by genre
 -  Can view single movie details
 
+<pre></pre>
 
 ![screenshot 1](https://github.com/markmumba/movieApp/blob/main/images/movie%201.png)
-
+<pre></pre>
 ![screenshot 2](https://github.com/markmumba/movieApp/blob/main/images/movie%202.png)
-
+<pre></pre>
 ![screenshot 4](https://github.com/markmumba/movieApp/blob/main/images/movie%204.png)
-
+<pre></pre>
 ### How to run
 If you want to use it on your laptop :
 -    First, download the zip folder of the code or you can `git clone from the terminal 
